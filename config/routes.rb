@@ -5,4 +5,9 @@ Rails.application.routes.draw do
   # root "articles#index"
   # API設定
   get '/api/test', to: 'application#test'
+  # 特定のアクションへマッピング
+  resources :rooms, only: [:index, :create] do
+    # チャットルームごとにメッセージを取得できるよう設定
+    resources :messages, only: [:index,:create]
+  end
 end

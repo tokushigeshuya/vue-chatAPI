@@ -2,7 +2,7 @@ class RoomsController < ApplicationController
     def index
         # Room モデルの全てのデータを取得して、JSON形式でレスポンスを返します。
         rooms = Room.all
-        render json: rooms, status: ok
+        render json: rooms, status: :ok
     end
 
     def create
