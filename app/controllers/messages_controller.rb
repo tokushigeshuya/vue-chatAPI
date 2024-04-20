@@ -9,12 +9,12 @@ class MessagesController < ApplicationController
     def create
         room = Room.find(params[:room_id])
         message = room.messages.create(message_params)
-        render json: message,   status: :created
+        render json: message, status: :created
     end
 
     private
 
-    def massage_params
+    def message_params
         # キーの指定
         params.require(:message).permit(:content, :sender_name)
     end
