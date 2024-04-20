@@ -10,6 +10,8 @@ class MessagesController < ApplicationController
         room = Room.find(params[:room_id])
         message = room.messages.create(message_params)
         render json: message, status: :created
+        # メッセージが作成されたときに指定したチャンネルにブロードキャスト(チャンネル経由でフロントエンドに送信)
+        ActionCable.server.broadcast "room_channel_#{params[:room_id]}", message
     end
 
     private
